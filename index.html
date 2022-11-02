@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button type="button" onclick="payWithPaystack()"> Pay </button>
+
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+  <script>
+    function payWithPaystack () {
+      var handler = PaystackPop.setup({
+        key: 'PUBLIC_KEY',
+        email: 'rukkiecodes@email.com',
+        amount: 100,
+        ref: '' + Math.floor((Math.random() * 1000000000) + 1),
+        onClose: function () {
+          alert('window closed');
+        }
+      });
+      handler.openIframe();
+    }
+  </script>
+</body>
+
+</html>
