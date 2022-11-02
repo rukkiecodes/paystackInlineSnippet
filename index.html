@@ -9,18 +9,28 @@
 </head>
 
 <body>
-  <button type="button" onclick="payWithPaystack()"> Pay </button>
+  <form>
+    <input type="email" id="email" placeholder="Please enter your email">
+    <input type="number" id="amount" placeholder="Please enter an amount">
+    <button type="button" onclick="payWithPaystack()"> Pay </button>
+  </form>
 
   <script src="https://js.paystack.co/v1/inline.js"></script>
   <script>
-    function payWithPaystack () {
+    const _email = document.querySelector('#email')
+    const _amount = document.querySelector('#amount')
+
+
+    const payWithPaystack = () => {
+      if (_email.value == '' && _amount.value == '') return
+      
       var handler = PaystackPop.setup({
         key: 'PUBLIC_KEY',
-        email: 'rukkiecodes@email.com',
-        amount: 100,
+        email: _email.value,
+        amount: _amount.value,
         ref: '' + Math.floor((Math.random() * 1000000000) + 1),
-        onClose: function () {
-          alert('window closed');
+        onClose: () => {
+          // DO SOMETHING
         }
       });
       handler.openIframe();
